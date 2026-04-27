@@ -41,15 +41,24 @@
 
     html {
       scroll-behavior: smooth;
-      font-size: 16px
+      font-size: 16px;
+      overflow-x: hidden;
+    }
+
+    @media (max-width: 768px) {
+      html { font-size: 14px; }
     }
 
     body {
-      font-family: var(--sans);
-      color: var(--text);
       background: var(--navy);
+      color: var(--text);
+      font-family: var(--sans);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
-      -webkit-font-smoothing: antialiased
+      width: 100%;
+      margin: 0;
+      padding: 0;
     }
 
     a {
@@ -207,17 +216,67 @@
     /* ── HERO ── */
     #hero {
       position: relative;
-      min-height: 100vh;
+      height: 100vh;
+      overflow: hidden;
+      background: var(--navy);
+    }
+
+    .hero-slider {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 1s var(--ease), transform 1.2s var(--ease);
       display: flex;
       align-items: center;
-      overflow: hidden;
-      background: var(--navy)
+      z-index: 1;
+      transform: scale(1.05);
+    }
+
+    .hero-slide.active {
+      opacity: 1;
+      visibility: visible;
+      z-index: 2;
+      transform: scale(1);
+    }
+
+    /* Slider Nav dots */
+    .slider-nav {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      gap: 12px;
+    }
+
+    .slider-dot {
+      width: 30px;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.2);
+      cursor: pointer;
+      transition: all 0.3s;
+      border: none;
+      padding: 0;
+    }
+
+    .slider-dot.active {
+      background: var(--red);
+      width: 50px;
     }
 
     .hero-bg {
       position: absolute;
       inset: 0;
-      background: 
+      background:
         radial-gradient(circle at 15% 25%, rgba(155, 27, 48, .15) 0%, transparent 45%),
         radial-gradient(circle at 85% 75%, rgba(155, 27, 48, .1) 0%, transparent 45%),
         linear-gradient(135deg, #0f0303 0%, #1a0505 40%, #2d0a0a 70%, #1a0505 100%)
@@ -283,30 +342,7 @@
       }
     }
 
-    /* Animated logo mark - large background */
-    .hero-logomark {
-      position: absolute;
-      right: -60px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 700px;
-      height: 700px;
-      opacity: .08;
-      animation: spin 60s linear infinite;
-      pointer-events: none
-    }
 
-    .hero-logomark img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain
-    }
-
-    @keyframes spin {
-      to {
-        transform: translateY(-50%) rotate(360deg)
-      }
-    }
 
     .hero-content {
       position: relative;
@@ -429,23 +465,25 @@
     .hero-scroll {
       position: absolute;
       bottom: 2.5rem;
-      left: 2.5rem;
+      right: 2.5rem;
       z-index: 2;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 10px;
-      font-size: .75rem;
-      letter-spacing: .12em;
+      gap: 12px;
+      font-size: .65rem;
+      font-weight: 500;
+      letter-spacing: .25em;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, .35);
+      color: rgba(255, 255, 255, .25);
       opacity: 0;
       animation: fadeUp .9s var(--ease) 1.2s forwards
     }
 
     .scroll-line {
-      width: 40px;
-      height: 1px;
-      background: rgba(255, 255, 255, .2);
+      width: 1px;
+      height: 50px;
+      background: rgba(255, 255, 255, .1);
       position: relative;
       overflow: hidden
     }
@@ -453,51 +491,26 @@
     .scroll-line::after {
       content: '';
       position: absolute;
-      top: 0;
-      left: -100%;
+      top: -100%;
+      left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(255, 255, 255, .6);
-      animation: scrollLine 2.5s ease-in-out infinite
+      background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, .5), transparent);
+      animation: scrollLineVertical 2.5s ease-in-out infinite
     }
 
-    @keyframes scrollLine {
+    @keyframes scrollLineVertical {
       0% {
-        left: -100%
+        top: -100%
       }
 
       50%,
       100% {
-        left: 100%
+        top: 100%
       }
     }
 
-    .hero-stats {
-      position: absolute;
-      bottom: 3rem;
-      right: 2.5rem;
-      z-index: 2;
-      display: flex;
-      gap: 3rem;
-      opacity: 0;
-      animation: fadeUp .9s var(--ease) 1.1s forwards
-    }
 
-    .h-stat-num {
-      font-family: var(--serif);
-      font-size: 2.5rem;
-      font-weight: 600;
-      color: #fff;
-      line-height: 1
-    }
-
-    .h-stat-lbl {
-      font-size: .72rem;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, .4);
-      margin-top: .3rem
-    }
 
     @keyframes fadeUp {
       from {
@@ -547,6 +560,39 @@
     @keyframes ticker {
       to {
         transform: translateX(-50%)
+      }
+    }
+
+    /* ── SCROLL THREAD ── */
+    .scroll-thread-wrap {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 120px;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+      overflow: hidden;
+    }
+
+    .scroll-thread-svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    #scrollThread {
+      transition: stroke-dashoffset 0.1s linear;
+      opacity: 0;
+    }
+
+    #scrollTip {
+      opacity: 0;
+      filter: drop-shadow(0 0 8px #FF5E5E);
+    }
+
+    @media(max-width:1024px) {
+      .scroll-thread-wrap {
+        display: none
       }
     }
 
@@ -662,12 +708,14 @@
     }
 
     .about-img-main {
-      width: 100%;
+      width: 85%;
+      margin: 0 auto;
       aspect-ratio: 4/5;
       background: linear-gradient(145deg, #c9d8e8, #7fa8c4);
       border-radius: 4px;
       overflow: hidden;
-      position: relative
+      position: relative;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
     }
 
     .about-img-overlay {
@@ -692,7 +740,7 @@
       box-shadow: 0 20px 60px rgba(0, 0, 0, .4);
       border-radius: 4px;
       border-left: 4px solid var(--red);
-      border-top: 1px solid rgba(255,255,255,0.05);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
       max-width: 280px;
       backdrop-filter: blur(10px);
     }
@@ -735,7 +783,7 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1.5px;
-      background: var(--warm)
+      background: var(--warm);
     }
 
     .svc-card {
@@ -744,7 +792,44 @@
       cursor: pointer;
       position: relative;
       overflow: hidden;
-      transition: background .35s
+      transition: background .35s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .svc-featured {
+      grid-column: 1 / -1;
+      flex-direction: row;
+      align-items: center;
+      gap: 4rem;
+      padding: 4.5rem;
+    }
+
+    .svc-featured .svc-icon {
+      width: 100px;
+      height: 100px;
+      margin-bottom: 0;
+    }
+
+    .svc-featured .svc-icon svg {
+      width: 44px;
+      height: 44px;
+    }
+
+    .svc-featured .svc-title {
+      font-size: 2.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .svc-featured .svc-desc {
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin-bottom: 1.75rem;
+    }
+
+    .svc-featured .svc-link {
+      opacity: 1;
+      font-size: 0.9rem;
     }
 
     .svc-card::before {
@@ -832,7 +917,7 @@
       background: var(--navy-m);
       border-color: var(--red);
       transform: translateY(-5px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     }
 
     .svc-card:hover .svc-title {
@@ -920,8 +1005,8 @@
       transform: translateX(100%);
       transition: transform .5s var(--ease);
       padding: 4rem;
-      border-left: 1px solid rgba(255,255,255,0.1);
-      box-shadow: -20px 0 60px rgba(0,0,0,0.5);
+      border-left: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: -20px 0 60px rgba(0, 0, 0, 0.5);
       overflow-y: auto;
     }
 
@@ -935,7 +1020,7 @@
       right: 2rem;
       width: 40px;
       height: 40px;
-      border: 1.5px solid rgba(255,255,255,0.1);
+      border: 1.5px solid rgba(255, 255, 255, 0.1);
       border-radius: 50%;
       background: none;
       cursor: pointer;
@@ -975,7 +1060,7 @@
     .modal-body {
       font-size: .95rem;
       font-weight: 300;
-      color: rgba(255,255,255,0.7);
+      color: rgba(255, 255, 255, 0.7);
       line-height: 1.85
     }
 
@@ -1370,12 +1455,28 @@
       margin-top: 3rem
     }
 
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin: 2rem 0;
+    }
+
+    .about-stat-item {
+      background: var(--navy-m);
+      padding: 1.5rem;
+      border-radius: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-top: 3px solid var(--red);
+    }
+
     .policy-card {
       background: var(--navy-m);
       border: 1px solid rgba(255, 255, 255, .08);
-      padding: 2rem;
+      padding: 2.25rem 2rem;
       border-radius: 4px;
-      transition: all .35s var(--ease)
+      transition: all .35s var(--ease);
+      text-align: center;
     }
 
     .policy-card:hover {
@@ -1385,11 +1486,12 @@
     }
 
     .policy-card svg {
-      width: 32px;
-      height: 32px;
+      width: 28px;
+      height: 28px;
       stroke: var(--red);
-      margin-bottom: 1rem;
-      fill: none
+      margin: 0 auto 1.25rem;
+      fill: none;
+      display: block;
     }
 
     .policy-card h4 {
@@ -1751,70 +1853,140 @@
 
     /* ── RESPONSIVE ── */
     @media(max-width:1024px) {
-      .nav-links {
-        display: none
-      }
-
-      .hamburger {
-        display: flex
-      }
-
-      .about-grid,
+      .container { padding: 0 1.5rem; }
+      
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      
+      .hero-h1 { font-size: clamp(3rem, 8vw, 5rem); }
+      
       .services-intro,
       .contact-grid,
       .purpose-header,
-      .sust-inner,
+      .about-grid,
       .ft-top {
         grid-template-columns: 1fr;
-        gap: 3rem
+        gap: 3.5rem;
       }
 
-      .svc-grid,
-      .p-cards,
-      .esg-stats {
-        grid-template-columns: 1fr
+      .svc-grid {
+        grid-template-columns: 1fr;
       }
 
-      .stats-grid,
-      .policy-cards {
-        grid-template-columns: 1fr 1fr
+      .svc-featured {
+        flex-direction: column !important;
+        padding: 3rem 1.5rem !important;
+        gap: 2rem !important;
+        text-align: center;
+        grid-column: auto;
       }
 
-      .hero-stats {
-        display: none
+      .svc-card {
+        text-align: center;
+        padding: 2.5rem 1.5rem !important;
+        gap: 2rem !important;
       }
+
+      .svc-icon { margin: 0 auto !important; width: 64px !important; height: 64px !important; }
+      .svc-desc { margin: 0 auto; text-align: center; }
+      .svc-title { text-align: center; }
+      .svc-link { justify-content: center; opacity: 1 !important; }
+
+      .p-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .about-stats { grid-template-columns: 1fr; }
+      .policy-cards { grid-template-columns: 1fr !important; }
 
       .ft-top {
-        grid-template-columns: 1fr 1fr
+        grid-template-columns: 1fr 1fr;
       }
+
+      .hero-scroll { display: none; }
     }
 
-    @media(max-width:640px) {
+    @media(max-width:768px) {
+      .sec { padding: 5rem 0; }
+      
+      .hero-h1 { font-size: 2.8rem; }
+      .hero-sub { font-size: 1rem; max-width: 100%; }
+      .hero-actions { flex-direction: column; width: 100%; }
+      .hero-actions .btn-primary, .hero-actions .btn-ghost { width: 100%; justify-content: center; }
 
-      .stats-grid,
-      .policy-cards,
-      .form-row {
-        grid-template-columns: 1fr
-      }
-
-      .hero-h1 {
-        font-size: 3rem
-      }
-
-      .sec {
-        padding: 5rem 0
-      }
-
-      .ft-top {
-        grid-template-columns: 1fr
-      }
+      .modal { padding: 2.5rem 1.5rem; }
+      .modal-title { font-size: 2rem; }
 
       .about-badge {
+        position: relative;
         right: 0;
-        bottom: -1rem
+        bottom: 0;
+        margin-top: 1.5rem;
+        transform: none;
       }
+
+      .ft-top {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .ft-top p { margin-left: auto !important; margin-right: auto !important; }
+      .ft-logo { justify-content: center; }
+      .ft-contact { align-items: center; }
+      .ft-contact a { justify-content: center; width: 100%; }
+      .socials { justify-content: center; }
+
+      .ft-col ul { display: flex; flex-direction: column; align-items: center; }
+      .ft-bottom { flex-direction: column; gap: 1.5rem; text-align: center; }
+      .ft-legal { justify-content: center; flex-wrap: wrap; }
+      
+      .form-row { grid-template-columns: 1fr; gap: 1.25rem; }
+      .contact-form { padding: 1.5rem; }
+      .contact-form h3 { text-align: center; font-size: 1.7rem; }
+      
+      .to-top { bottom: 1rem; right: 1rem; width: 40px; height: 40px; }
     }
 
+    @media(max-width:480px) {
+      .hero-h1 { font-size: 2.2rem; }
+      .sec-h2 { font-size: 2rem; }
+      .purpose-h { font-size: 2rem; }
+      .svc-title { font-size: 1.5rem !important; }
+      .svc-featured .svc-title { font-size: 1.8rem !important; }
+    }
+
+
+
+
+
+
+    .promo-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .promo-title {
+      font-family: var(--serif);
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      line-height: 1.05;
+      margin-bottom: 1.5rem;
+      color: #fff;
+      letter-spacing: -0.02em;
+    }
+
+    .promo-title em {
+      font-style: italic;
+      color: var(--red);
+    }
+
+    .promo-desc {
+      font-size: 1.1rem;
+      color: var(--g6);
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+      max-width: 540px;
+    }
 
 
   </style>
@@ -1863,41 +2035,59 @@
       <div class="hero-orb orb1"></div>
       <div class="hero-orb orb2"></div>
       <div class="hero-orb orb3"></div>
-      <!-- Animated background logo mark -->
 
-      <div class="hero-content">
-        <p class="hero-eyebrow">Premier Full-Service Digital Agency · Est. 2012</p>
-        <h1 class="hero-h1">Accelerating<br /><em>Digital Growth</em></h1>
-        <p class="hero-sub">MindNext empowers brands to navigate the complex digital landscape with precision, 
-          creativity, and data-backed strategies that deliver measurable ROI.</p>
-        <div class="hero-actions">
-          <a href="#services" class="btn-primary">
-            Explore Services
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
-          </a>
-          <a href="#about-pg" class="btn-ghost">Our Story</a>
+      <div class="hero-slider">
+        <!-- Slide 1: Original Hero -->
+        <div class="hero-slide active">
+          <div class="hero-content">
+            <p class="hero-eyebrow">Premier Full-Service Digital Agency · Est. 2012</p>
+            <h1 class="hero-h1">Accelerating<br /><em>Digital Growth</em></h1>
+            <p class="hero-sub">MindNext empowers brands to navigate the complex digital landscape with precision,
+              creativity, and data-backed strategies that deliver measurable ROI.</p>
+            <div class="hero-actions">
+              <a href="#services" class="btn-primary">
+                Explore Services
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </a>
+              <a href="#about-pg" class="btn-ghost">Our Story</a>
+            </div>
+          </div>
         </div>
+
+        <!-- Slide 2: Promotion -->
+        <div class="hero-slide">
+          <div class="hero-content">
+            <p class="hero-eyebrow">Elite Privilege</p>
+            <h2 class="hero-h1" style="font-size: clamp(2.8rem, 5vw, 4.5rem); margin-bottom: 1.5rem;">Experience the <em>Future</em> of Strategy — On Us.</h2>
+            <p class="hero-sub" style="max-width: 600px; margin-bottom: 2.5rem;">We're inviting forward-thinking brands to experience the full power of MindNext. For a limited time, get 30 days of our premium services at zero cost.</p>
+            <div class="hero-actions">
+              <a href="#contact-form" class="btn-primary">
+                Claim Your Free Month
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slider Nav -->
+      <div class="slider-nav">
+        <button class="slider-dot active" aria-label="Slide 1"></button>
+        <button class="slider-dot" aria-label="Slide 2"></button>
       </div>
 
       <div class="hero-scroll" aria-hidden="true">
         <div class="scroll-line"></div>
         Scroll
       </div>
-
-
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════
-  PROMOTION / SPECIAL OFFER
-══════════════════════════════════════ -->
 
-
-  <!-- ══════════════════════════════════════
-  TICKER
-══════════════════════════════════════ -->
 
 
 
@@ -1913,8 +2103,8 @@
           <h2 class="sec-h2">The Science of<br /><em>Authority Writing</em></h2>
         </div>
         <div class="rvr" style="padding-top:1rem">
-          <p class="sec-p">We transform complex information into high-impact digital assets. 
-            Our Article Provider Service is designed for brands that demand precision, depth, and 
+          <p class="sec-p">We transform complex information into high-impact digital assets.
+            Our Article Provider Service is designed for brands that demand precision, depth, and
             unrivaled authority in their niche.</p>
           <p style="font-size:.8rem;color:var(--g4);margin-top:.5rem">Focused on depth, driven by expertise.</p>
         </div>
@@ -1923,9 +2113,8 @@
       <div class="svc-grid">
 
         <!-- Article Writing & Strategy -->
-        <div class="svc-card rv d1" data-svc="article" style="grid-column: 1 / -1; display: flex; align-items: center; gap: 3rem; padding: 4rem;">
-          <div class="svc-num">01</div>
-          <div class="svc-icon" style="width: 80px; height: 80px;">
+        <div class="svc-card svc-featured rv d1" data-svc="article">
+          <div class="svc-icon">
             <svg viewBox="0 0 24 24" stroke-width="1.5">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
               <polyline points="14 2 14 8 20 8" />
@@ -1934,10 +2123,13 @@
               <polyline points="10 9 9 9 8 9" />
             </svg>
           </div>
-          <div style="flex: 1;">
-            <h3 class="svc-title" style="font-size: 2rem;">Article Writing & Content Strategy</h3>
-            <p class="svc-desc" style="font-size: 1.1rem; max-width: 700px;">Premium, research-backed content engineering for global brands. We don't just write; we architect authority through scientific precision and compelling narratives.</p>
-            <a class="svc-link" style="opacity: 1; margin-top: 1rem; font-size: 0.9rem;">View Full Details & Strategy <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <div class="svc-content">
+            <h3 class="svc-title">Article Writing & Content Strategy</h3>
+            <p class="svc-desc">Premium, research-backed content
+              engineering for global brands. We don't just write; we architect authority through scientific precision
+              and compelling narratives.</p>
+            <a class="svc-link">View Full Details & Strategy
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg></a>
           </div>
@@ -1961,7 +2153,7 @@
           <h2 class="purpose-h">We Engineer<br />Strategies That<br /><em>Transform</em><br />Vision Into Reality</h2>
         </div>
         <div class="rv d2" style="padding-top:1.5rem">
-          <p class="purpose-sub">Our mission is to empower businesses with the tools, talent, and technology needed 
+          <p class="purpose-sub">Our mission is to empower businesses with the tools, talent, and technology needed
             to thrive in the digital age and build sustainable growth.</p>
           <a href="#services" class="btn-primary">Explore Services <svg viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2">
@@ -1976,7 +2168,8 @@
               <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" stroke="currentColor" />
             </svg></div>
           <h3>Growth Dominance</h3>
-          <p>We focus on high-impact strategies that ensure your brand doesn't just participate, but dominates its niche.</p>
+          <p>We focus on high-impact strategies that ensure your brand doesn't just participate, but dominates its
+            niche.</p>
           <div class="p-card-bar"></div>
         </div>
         <div class="p-card rv d2">
@@ -1994,7 +2187,8 @@
               <circle cx="9" cy="7" r="4" stroke="currentColor" />
             </svg></div>
           <h3>Client Partnership</h3>
-          <p>We work as an extension of your team, dedicated to your long-term success and building a lasting legacy.</p>
+          <p>We work as an extension of your team, dedicated to your long-term success and building a lasting legacy.
+          </p>
           <div class="p-card-bar"></div>
         </div>
       </div>
@@ -2012,7 +2206,10 @@
             <div class="since-tag">Since 2026</div>
             <div class="about-img-main">
               <div class="about-img-overlay"></div>
-              <img src="C:\Users\Raj\.gemini\antigravity\brain\de7a6407-cc6a-4144-874c-6dcc51400912\content_strategy_illustration_2026_1777224774617.png" alt="Content Strategy Illustration" style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
+              <img
+                src="C:\Users\Raj\.gemini\antigravity\brain\de7a6407-cc6a-4144-874c-6dcc51400912\content_strategy_illustration_2026_1777224774617.png"
+                alt="Content Strategy Illustration"
+                style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
 
             </div>
             <div class="about-badge">
@@ -2023,31 +2220,35 @@
         <div class="rvr">
           <span class="sec-tag">The MindNext Story</span>
           <h2 class="sec-h2">The Science of Narrative,<br /><em>The Art of Impact</em></h2>
-          <p class="sec-p">Founded in 2026, MindNext was born from a vision to bridge the gap between complex research and global understanding. We specialize in high-authority article engineering for brands that demand excellence.</p>
-          <p class="sec-p">From a boutique agency to a global partner for industry leaders, every chapter of our story is defined by precision, passion, and the relentless pursuit of content that transforms.</p>
+          <p class="sec-p">Founded in 2026, MindNext was born from a vision to bridge the gap between complex research
+            and global understanding. We specialize in high-authority article engineering for brands that demand
+            excellence.</p>
+          <p class="sec-p">From a boutique agency to a global partner for industry leaders, every chapter of our story
+            is defined by precision, passion, and the relentless pursuit of content that transforms.</p>
 
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin:2rem 0">
-            <div style="background:var(--navy-m);padding:1.5rem;border-radius:4px;border-top:3px solid var(--red);border:1px solid rgba(255,255,255,0.05)">
+          <div class="about-stats">
+            <div class="about-stat-item">
               <div style="font-family:var(--serif);font-size:2.2rem;font-weight:600;color:#fff;line-height:1">2026
               </div>
               <div style="font-size:.82rem;color:rgba(255, 255, 255, 0.5);margin-top:.3rem">Year Established</div>
             </div>
-            <div style="background:var(--navy-m);padding:1.5rem;border-radius:4px;border-top:3px solid var(--red);border:1px solid rgba(255,255,255,0.05)">
+            <div class="about-stat-item">
               <div style="font-family:var(--serif);font-size:2.2rem;font-weight:600;color:#fff;line-height:1">29+
               </div>
               <div style="font-size:.82rem;color:rgba(255, 255, 255, 0.5);margin-top:.3rem">States Delivered</div>
             </div>
           </div>
 
-          <h3 style="font-family:var(--serif);font-size:1.4rem;font-weight:500;margin-bottom:1.25rem;color:var(--text)">
+          <h3 style="font-family:var(--serif);font-size:1.6rem;font-weight:500;margin-bottom:1.5rem;color:var(--text);text-align:center">
             Company Policies</h3>
-          <div class="policy-cards" style="grid-template-columns:1fr 1fr;margin-top:0">
+          <div class="policy-cards" style="margin-top:0">
             <div class="policy-card">
               <svg viewBox="0 0 24 24">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
               </svg>
               <h4>Scientific Precision</h4>
-              <p>Every article undergoes rigorous fact-checking by subject matter experts to ensure absolute accuracy.</p>
+              <p>Every article undergoes rigorous fact-checking by subject matter experts to ensure absolute accuracy.
+              </p>
             </div>
             <div class="policy-card">
               <svg viewBox="0 0 24 24">
@@ -2063,14 +2264,8 @@
                   d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
               </svg>
               <h4>Content Integrity</h4>
-              <p>Strict adherence to editorial standards, rigorous fact-checking, and 100% original, human-crafted research.</p>
-            </div>
-            <div class="policy-card">
-              <svg viewBox="0 0 24 24">
-                <path d="M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0z" />
-              </svg>
-              <h4>Data Sovereignty</h4>
-              <p>Strict confidentiality and secure handling of all proprietary research and client data.</p>
+              <p>Strict adherence to editorial standards, rigorous fact-checking, and 100% original, human-crafted
+                research.</p>
             </div>
           </div>
         </div>
@@ -2089,53 +2284,71 @@
       </div>
       <div class="contact-grid">
         <div class="rvl">
-          <h3>Our Information</h3>
+          <h3 style="font-family:var(--serif); font-size:1.6rem; margin-bottom:2rem; font-weight:500;">Our Information
+          </h3>
+
           <div class="contact-item">
-            <div class="c-ico"><svg viewBox="0 0 24 24">
+            <div class="c-ico">
+              <svg viewBox="0 0 24 24">
                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
                 <circle cx="12" cy="10" r="3" />
-              </svg></div>
+              </svg>
+            </div>
             <div>
               <div class="c-lbl">Headquarters</div>
-              <div class="c-val">MindNext House, Dr. Annie Besant Road<br />Worli, Mumbai — 400 030, India</div>
+              <div class="c-val">MindNext House, Puna-Simada Road<br />Surat - Gujarat 395010, India</div>
             </div>
           </div>
+
           <div class="contact-item">
-            <div class="c-ico"><svg viewBox="0 0 24 24">
+            <div class="c-ico">
+              <svg viewBox="0 0 24 24">
                 <path
                   d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 11 19.79 19.79 0 0 1 1.93 2.3 2 2 0 0 1 3.9 0h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 7.91a16 16 0 0 0 5.97 5.97l1.06-1.06a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
-              </svg></div>
+              </svg>
+            </div>
             <div>
               <div class="c-lbl">Phone</div>
-              <div class="c-val">+91 22 6640 2323</div>
+              <div class="c-val">+91 94 2906 6805</div>
             </div>
           </div>
+
           <div class="contact-item">
-            <div class="c-ico"><svg viewBox="0 0 24 24">
+            <div class="c-ico">
+              <svg viewBox="0 0 24 24">
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                 <polyline points="22,6 12,13 2,6" />
-              </svg></div>
+              </svg>
+            </div>
             <div>
               <div class="c-lbl">Email</div>
-              <div class="c-val">info@mindnext.in</div>
+              <div class="c-val">info.mindnext@gmail.com</div>
             </div>
           </div>
+
           <div class="contact-item">
-            <div class="c-ico"><svg viewBox="0 0 24 24">
+            <div class="c-ico">
+              <svg viewBox="0 0 24 24">
                 <circle cx="12" cy="12" r="10" />
                 <polyline points="12 6 12 12 16 14" />
-              </svg></div>
+              </svg>
+            </div>
             <div>
               <div class="c-lbl">Business Hours</div>
-              <div class="c-val">Mon – Fri: 9:00 AM – 6:00 PM IST</div>
+              <div class="c-val">Mon – Sat: 9:00 AM – 6:00 PM IST</div>
             </div>
           </div>
+
           <div
-            style="background:var(--cream);padding:1.75rem;border-radius:4px;border-left:3px solid var(--red);margin-top:1rem">
-            <p style="font-size:.85rem;color:var(--g6);line-height:1.75"><strong
-                style="color:var(--text);display:block;margin-bottom:.4rem">Grievance Redressal</strong>For complaints
-              or feedback regarding our products or services, please write to:<br /><a
-                href="mailto:grievance@mindnext.in" style="color:var(--red)">grievance@mindnext.in</a></p>
+            style="background: rgba(255,255,255,0.03); padding: 2rem; border-radius: 12px; border-left: 3px solid var(--red); margin-top: 2rem; backdrop-filter: blur(10px); border-top: 1px solid rgba(255,255,255,0.05);">
+            <h4
+              style="font-family: var(--serif); font-size: 1.2rem; color: #fff; margin-bottom: 0.75rem; font-weight: 500;">
+              Grievance Redressal</h4>
+            <p style="font-size: 0.9rem; color: var(--g6); line-height: 1.8;">
+              For complaints or feedback regarding our products or services, please write to:<br />
+              <a href="mailto:grievance@mindnext.in"
+                style="color: var(--red); font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(155, 27, 48, 0.3); transition: all 0.3s;">grievance.mindnext@gmail.com</a>
+            </p>
           </div>
         </div>
         <div class="rvr">
@@ -2203,14 +2416,14 @@
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                 <polyline points="22,6 12,13 2,6" />
               </svg>
-              info@mindnext.in
+              info.mindnext@gmail.com
             </a>
             <a href="tel:+912266402323">
               <svg viewBox="0 0 24 24">
                 <path
                   d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 11 19.79 19.79 0 0 1 1.93 2.3 2 2 0 0 1 3.9 0h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 7.91a16 16 0 0 0 5.97 5.97l1.06-1.06a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
               </svg>
-              +91 22 6640 2323
+              +91 94 2906 6805
             </a>
           </div>
           <div class="socials">
@@ -2277,10 +2490,10 @@
       <div class="ft-bottom">
         <p class="ft-copy">© 2026 MindNext. All rights reserved.</p>
         <div class="ft-legal">
-          <a href="javascript:void(0)" onclick="openLegal('privacy')">Privacy Policy</a>
-          <a href="javascript:void(0)" onclick="openLegal('disclaimer')">Disclaimer</a>
-          <a href="javascript:void(0)" onclick="openLegal('sitemap')">Sitemap</a>
-          <a href="javascript:void(0)" onclick="openLegal('cookies')">Cookie Settings</a>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="disclaimer.html">Disclaimer</a>
+          <a href="sitemap.html">Sitemap</a>
+          <a href="cookies.html">Cookie Settings</a>
         </div>
       </div>
     </div>
@@ -2308,18 +2521,6 @@
     <div class="modal-body" id="mBody"></div>
   </div>
 
-  <!-- ══════════════════════════════════════
-  LEGAL MODAL (FOR SPA)
-  ══════════════════════════════════════ -->
-  <div class="modal-overlay" id="legalOverlay" style="z-index: 4000;"></div>
-  <div class="modal" id="legalModal" style="z-index: 4001; max-width: 900px; max-height: 85vh;">
-    <button class="modal-close" id="legalClose">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="16" height="16">
-        <path d="M18 6L6 18M6 6l12 12" />
-      </svg>
-    </button>
-    <div class="modal-body" id="legalBody" style="padding: 3rem; color: rgba(255,255,255,0.7); line-height: 1.8;"></div>
-  </div>
 
   <!-- ══════════════════════════════════════
   JAVASCRIPT
@@ -2350,19 +2551,7 @@
     window.addEventListener('scroll', () => toTop.classList.toggle('show', scrollY > 600), { passive: true });
     toTop.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    /* ── CONTACT FORM ── */
-    document.getElementById('submitBtn').addEventListener('click', function () {
-      const inputs = document.querySelectorAll('#contact-form input,#contact-form textarea,#contact-form select');
-      let ok = true;
-      inputs.forEach(i => { if (i.closest('.form-group') && !i.value.trim()) ok = false });
-      if (!ok) { this.style.animation = 'shake .4s'; setTimeout(() => this.style.animation = '', 400); return }
-      this.textContent = 'Sending…'; this.disabled = true;
-      setTimeout(() => {
-        document.getElementById('successMsg').classList.add('show');
-        this.textContent = 'Message Sent!';
-        inputs.forEach(i => i.value = '');
-      }, 1200);
-    });
+
 
     /* ── SERVICE DATA ── */
     const svcData = {
@@ -2409,20 +2598,8 @@
       card.addEventListener('click', () => openModal(card.dataset.svc));
     });
 
-    /* ── LEGAL MODAL (SPA) ── */
-    const legalOverlay = document.getElementById('legalOverlay'), legalModal = document.getElementById('legalModal'), legalClose = document.getElementById('legalClose'), legalBody = document.getElementById('legalBody');
-    function openLegal(key) {
-      const content = legalData[key]; if (!content) return;
-      legalBody.innerHTML = content;
-      legalOverlay.classList.add('open'); legalModal.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeLegal() { legalOverlay.classList.remove('open'); legalModal.classList.remove('open'); document.body.style.overflow = ''; }
-    legalOverlay.addEventListener('click', closeLegal);
-    legalClose.addEventListener('click', closeLegal);
-
-    document.addEventListener('keydown', e => { 
-      if (e.key === 'Escape') { closeModal(); closeLegal(); } 
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') { closeModal(); }
     });
 
     /* ── FORM SUBMISSION ── */
@@ -2430,12 +2607,12 @@
     if (submitBtn) {
       submitBtn.onclick = function (e) {
         e.preventDefault();
-        
+
         // Basic Validation
         const formGroup = document.querySelector('.contact-form');
         const inputs = formGroup.querySelectorAll('input, textarea, select');
         let allFilled = true;
-        
+
         inputs.forEach(input => {
           if (!input.value.trim() || (input.tagName === 'SELECT' && input.value === "")) {
             allFilled = false;
@@ -2449,7 +2626,7 @@
           const originalToastText = successToast.innerHTML;
           successToast.innerHTML = '<span style="color:#ff5e5e">⚠ Please fill all fields correctly.</span>';
           successToast.classList.add('show');
-          setTimeout(() => { 
+          setTimeout(() => {
             successToast.classList.remove('show');
             setTimeout(() => { successToast.innerHTML = originalToastText; }, 500);
           }, 3000);
@@ -2465,11 +2642,11 @@
           this.innerHTML = originalText;
           this.style.opacity = '1';
           this.style.pointerEvents = 'all';
-          
+
           successToast.classList.add('show');
-          
+
           // Clear form
-          inputs.forEach(input => { if(input.tagName !== 'SELECT') input.value = ''; else input.selectedIndex = 0; });
+          inputs.forEach(input => { if (input.tagName !== 'SELECT') input.value = ''; else input.selectedIndex = 0; });
 
           setTimeout(() => {
             successToast.classList.remove('show');
@@ -2490,11 +2667,148 @@
       }
     });
 
+    /* ── HERO SLIDER LOGIC ── */
+    function initHeroSlider() {
+      const heroSlides = document.querySelectorAll('.hero-slide');
+      const heroDots = document.querySelectorAll('.slider-dot');
+      let currentHeroSlide = 0;
+      let heroInterval;
+
+      if (heroSlides.length === 0) return;
+
+      function showHeroSlide(index) {
+        heroSlides.forEach((s, i) => {
+          s.classList.toggle('active', i === index);
+          if (heroDots[i]) heroDots[i].classList.toggle('active', i === index);
+        });
+        currentHeroSlide = index;
+      }
+
+      function nextHeroSlide() {
+        showHeroSlide((currentHeroSlide + 1) % heroSlides.length);
+      }
+
+      function startHeroSlider() {
+        clearInterval(heroInterval);
+        heroInterval = setInterval(nextHeroSlide, 6000);
+      }
+
+      heroDots.forEach((dot, i) => {
+        dot.addEventListener('click', () => {
+          showHeroSlide(i);
+          startHeroSlider();
+        });
+      });
+
+      startHeroSlider();
+    }
+
+
+
+    // Initialize all logic when DOM is ready
+    document.addEventListener('DOMContentLoaded', () => {
+      initHeroSlider();
+
+      // Custom Smooth Scroll for local file security
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          const targetId = this.getAttribute('href').slice(1);
+          if (!targetId) return;
+          const targetEl = document.getElementById(targetId);
+          if (targetEl) {
+            e.preventDefault();
+            const offset = 70;
+            const targetPos = targetEl.getBoundingClientRect().top + window.pageYOffset - offset;
+            window.scrollTo({ top: targetPos, behavior: 'smooth' });
+          }
+        });
+      });
+    });
+
     /* Keyframes for spin */
     const style = document.createElement('style');
     style.innerHTML = `@keyframes spin { to { transform: rotate(360deg); } }`;
     document.head.appendChild(style);
+
+    /* ── NARRATIVE THREAD LOGIC ── */
+    const thread = document.getElementById('scrollThread');
+    const tip = document.getElementById('scrollTip');
+    
+    if (thread && tip) {
+      const threadSvg = thread.parentElement;
+
+      function initThread() {
+        const h = document.documentElement.scrollHeight || document.body.scrollHeight;
+        threadSvg.setAttribute('viewBox', `0 0 120 ${h}`);
+        threadSvg.style.height = h + 'px';
+
+        let d = `M100,0 L100,500 `; // Start line
+
+        const sections = [
+          { id: 'services', type: 'loop' },
+          { id: 'about-pg', type: 'diamond' },
+          { id: 'purpose', type: 'flower' },
+          { id: 'contact-form', type: 'flourish' }
+        ];
+
+        sections.forEach(sec => {
+          const el = document.getElementById(sec.id);
+          if (el) {
+            const y = el.offsetTop + 150;
+            d += `L100,${y - 80} `;
+            if (sec.type === 'loop') d += `C120,${y - 40} 120,${y + 40} 100,${y + 80} `;
+            else if (sec.type === 'diamond') d += `L120,${y} L100,${y + 80} `;
+            else if (sec.type === 'flower') d += `Q120,${y - 40} 110,${y} Q120,${y + 40} 100,${y + 40} Q70,${y + 40} 80,${y} Q70,${y - 40} 100,${y - 40} L100,${y + 80} `;
+            else if (sec.type === 'flourish') d += `Q120,${y} 100,${y + 120} `;
+          }
+        });
+
+        d += `L100,${h}`;
+        thread.setAttribute('d', d);
+
+        const length = thread.getTotalLength();
+        thread.style.strokeDasharray = length;
+        thread.style.strokeDashoffset = length;
+        updateThread();
+      }
+
+      function updateThread() {
+        const length = thread.getTotalLength();
+        if (!length) return;
+        const scrollY = window.scrollY;
+        const winH = window.innerHeight;
+        const docH = document.documentElement.scrollHeight || document.body.scrollHeight;
+
+        const progress = Math.min(1, (scrollY + winH * 0.8) / docH);
+        thread.style.strokeDashoffset = length * (1 - progress);
+
+        if (scrollY < 100) {
+          tip.style.opacity = '0';
+          thread.style.opacity = '0';
+        } else {
+          tip.style.opacity = '1';
+          thread.style.opacity = '1';
+        }
+
+        const point = thread.getPointAtLength(length * progress);
+        tip.setAttribute('cx', point.x);
+        tip.setAttribute('cy', point.y);
+      }
+
+      window.addEventListener('load', initThread);
+      window.addEventListener('scroll', updateThread);
+      window.addEventListener('resize', initThread);
+      setTimeout(initThread, 1000);
+    }
   </script>
+
+  <!-- Narrative Thread -->
+  <div class="scroll-thread-wrap">
+    <svg class="scroll-thread-svg" preserveAspectRatio="none">
+      <path id="scrollThread" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="2.5" />
+      <circle id="scrollTip" r="4" fill="#FF5E5E" />
+    </svg>
+  </div>
 </body>
 
 </html>
