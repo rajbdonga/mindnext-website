@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <title>MindNext — Digital Growth &amp; Strategy</title>
+  <title>MindNext - Digital Growth &amp; Strategy</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -46,7 +46,9 @@
     }
 
     @media (max-width: 768px) {
-      html { font-size: 16.5px; }
+      html {
+        font-size: 16.5px;
+      }
     }
 
     body {
@@ -715,7 +717,7 @@
       border-radius: 4px;
       overflow: hidden;
       position: relative;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
     }
 
     .about-img-overlay {
@@ -1853,13 +1855,22 @@
 
     /* ── RESPONSIVE ── */
     @media(max-width:1024px) {
-      .container { padding: 0 1.5rem; }
-      
-      .nav-links { display: none; }
-      .hamburger { display: flex; }
-      
-      .hero-h1 { font-size: clamp(3rem, 8vw, 5rem); }
-      
+      .container {
+        padding: 0 1.5rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .hero-h1 {
+        font-size: clamp(3rem, 8vw, 5rem);
+      }
+
       .services-intro,
       .contact-grid,
       .purpose-header,
@@ -1887,35 +1898,80 @@
         gap: 2rem !important;
       }
 
-      .svc-icon { margin: 0 auto !important; width: 64px !important; height: 64px !important; }
-      .svc-desc { margin: 0 auto; text-align: center; }
-      .svc-title { text-align: center; }
-      .svc-link { justify-content: center; opacity: 1 !important; }
+      .svc-icon {
+        margin: 0 auto !important;
+        width: 64px !important;
+        height: 64px !important;
+      }
+
+      .svc-desc {
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .svc-title {
+        text-align: center;
+      }
+
+      .svc-link {
+        justify-content: center;
+        opacity: 1 !important;
+      }
 
       .p-cards {
         grid-template-columns: 1fr;
       }
 
-      .about-stats { grid-template-columns: 1fr; }
-      .policy-cards { grid-template-columns: 1fr !important; }
+      .about-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .policy-cards {
+        grid-template-columns: 1fr !important;
+      }
 
       .ft-top {
         grid-template-columns: 1fr 1fr;
       }
 
-      .hero-scroll { display: none; }
+      .hero-scroll {
+        display: none;
+      }
     }
 
     @media(max-width:768px) {
-      .sec { padding: 5rem 0; }
-      
-      .hero-h1 { font-size: 2.8rem; }
-      .hero-sub { font-size: 1.05rem; max-width: 100%; line-height: 1.7; }
-      .hero-actions { flex-direction: column; width: 100%; }
-      .hero-actions .btn-primary, .hero-actions .btn-ghost { width: 100%; justify-content: center; }
+      .sec {
+        padding: 5rem 0;
+      }
 
-      .modal { padding: 2.5rem 1.5rem; }
-      .modal-title { font-size: 2rem; }
+      .hero-h1 {
+        font-size: 2.8rem;
+      }
+
+      .hero-sub {
+        font-size: 1.05rem;
+        max-width: 100%;
+        line-height: 1.7;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .hero-actions .btn-primary,
+      .hero-actions .btn-ghost {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .modal {
+        padding: 2.5rem 1.5rem;
+      }
+
+      .modal-title {
+        font-size: 2rem;
+      }
 
       .about-badge {
         position: relative;
@@ -1930,29 +1986,87 @@
         text-align: center;
       }
 
-      .ft-top p { margin-left: auto !important; margin-right: auto !important; }
-      .ft-logo { justify-content: center; }
-      .ft-contact { align-items: center; }
-      .ft-contact a { justify-content: center; width: 100%; }
-      .socials { justify-content: center; }
+      .ft-top p {
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
 
-      .ft-col ul { display: flex; flex-direction: column; align-items: center; }
-      .ft-bottom { flex-direction: column; gap: 1.5rem; text-align: center; }
-      .ft-legal { justify-content: center; flex-wrap: wrap; }
-      
-      .form-row { grid-template-columns: 1fr; gap: 1.25rem; }
-      .contact-form { padding: 1.5rem; }
-      .contact-form h3 { text-align: center; font-size: 1.7rem; }
-      
-      .to-top { bottom: 1rem; right: 1rem; width: 40px; height: 40px; }
+      .ft-logo {
+        justify-content: center;
+      }
+
+      .ft-contact {
+        align-items: center;
+      }
+
+      .ft-contact a {
+        justify-content: center;
+        width: 100%;
+      }
+
+      .socials {
+        justify-content: center;
+      }
+
+      .ft-col ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .ft-bottom {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+      }
+
+      .ft-legal {
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+      }
+
+      .contact-form {
+        padding: 1.5rem;
+      }
+
+      .contact-form h3 {
+        text-align: center;
+        font-size: 1.7rem;
+      }
+
+      .to-top {
+        bottom: 1rem;
+        right: 1rem;
+        width: 40px;
+        height: 40px;
+      }
     }
 
     @media(max-width:480px) {
-      .hero-h1 { font-size: 2.2rem; }
-      .sec-h2 { font-size: 2rem; }
-      .purpose-h { font-size: 2rem; }
-      .svc-title { font-size: 1.5rem !important; }
-      .svc-featured .svc-title { font-size: 1.8rem !important; }
+      .hero-h1 {
+        font-size: 2.2rem;
+      }
+
+      .sec-h2 {
+        font-size: 2rem;
+      }
+
+      .purpose-h {
+        font-size: 2rem;
+      }
+
+      .svc-title {
+        font-size: 1.5rem !important;
+      }
+
+      .svc-featured .svc-title {
+        font-size: 1.8rem !important;
+      }
     }
 
 
@@ -1987,8 +2101,6 @@
       margin-bottom: 2.5rem;
       max-width: 540px;
     }
-
-
   </style>
 
 </head>
@@ -2060,8 +2172,12 @@
         <div class="hero-slide">
           <div class="hero-content">
             <p class="hero-eyebrow">Elite Privilege</p>
-            <h2 class="hero-h1" style="font-size: clamp(2.8rem, 5vw, 4.5rem); margin-bottom: 1.5rem;">Experience the <em>Future</em> of Strategy — On Us.</h2>
-            <p class="hero-sub" style="max-width: 600px; margin-bottom: 2.5rem;">We're inviting forward-thinking brands to experience the full power of MindNext. For a limited time, get 30 days of our premium services at zero cost.</p>
+            <h2 class="hero-h1" style="font-size: clamp(2.8rem, 5vw, 4.5rem); margin-bottom: 1.5rem;">Experience the
+              <em>Future</em> of Strategy — On Us.
+            </h2>
+            <p class="hero-sub" style="max-width: 600px; margin-bottom: 2.5rem;">We're inviting forward-thinking brands
+              to experience the full power of MindNext. For a limited time, get 30 days of our premium services at zero
+              cost.</p>
             <div class="hero-actions">
               <a href="#contact-form" class="btn-primary">
                 Claim Your Free Month
@@ -2220,11 +2336,12 @@
         <div class="rvr">
           <span class="sec-tag">The MindNext Story</span>
           <h2 class="sec-h2">The Science of Narrative,<br /><em>The Art of Impact</em></h2>
-          <p class="sec-p">Founded in 2026, MindNext was born from a vision to bridge the gap between complex research
-            and global understanding. We specialize in high-authority article engineering for brands that demand
+          <p class="sec-p">Founded in 2026, MindNext was born from a vision to redefine digital storytelling and
+            performance marketing. We specialize in high-authority content engineering and growth strategies for brands
+            that demand
             excellence.</p>
           <p class="sec-p">From a boutique agency to a global partner for industry leaders, every chapter of our story
-            is defined by precision, passion, and the relentless pursuit of content that transforms.</p>
+            is defined by precision, passion, and the relentless pursuit of ROI-driven growth.</p>
 
           <div class="about-stats">
             <div class="about-stat-item">
@@ -2239,7 +2356,8 @@
             </div>
           </div>
 
-          <h3 style="font-family:var(--serif);font-size:1.6rem;font-weight:500;margin-bottom:1.5rem;color:var(--text);text-align:center">
+          <h3
+            style="font-family:var(--serif);font-size:1.6rem;font-weight:500;margin-bottom:1.5rem;color:var(--text);text-align:center">
             Company Policies</h3>
           <div class="policy-cards" style="margin-top:0">
             <div class="policy-card">
@@ -2559,24 +2677,27 @@
         tag: "Strategic Narrative",
         title: "Article Writing & Content Strategy",
         body: `
-    <p class="modal-p">In an era of information overload, we provide <strong>Scientific Precision</strong>. Our article engineering service is designed for brands that require authoritative, research-backed content that not only ranks but establishes institutional trust.</p>
+    <p class="modal-p">In an era of digital saturation, we provide <strong>Performance-Driven Narratives</strong>. Our content strategy is designed for brands that require authoritative, SEO-backed storytelling that not only ranks but converts visitors into loyal customers.</p>
     <h4>Our Methodology</h4>
-      <li><strong>Rigorous Verification:</strong> 3-step fact-checking and plagiarism screening (Zero-AI Hallucination guarantee).</li>
+    <ul>
+      <li><strong>Market Analysis:</strong> Identifying high-value opportunities and competitor gaps.</li>
+      <li><strong>Search Intent Engineering:</strong> Aligning content with exactly what your audience is searching for.</li>
+      <li><strong>Data-Backed Optimization:</strong> Constant iteration based on performance metrics and user behavior.</li>
     </ul>
     <h4>What You Receive</h4>
     <ul>
-      <li><strong>White Papers:</strong> Deep-dive technical documents that establish market leadership.</li>
-      <li><strong>Thought Leadership Articles:</strong> Opinion pieces for major publications (Forbes, Harvard Business Review style).</li>
-      <li><strong>Case Studies:</strong> Data-driven success stories that convert leads into long-term partners.</li>
-      <li><strong>Regulatory & Scientific Briefs:</strong> Complex information simplified for stakeholders and patients.</li>
-      <li><strong>Interactive Content Assets:</strong> Articles designed for the modern web with embedded data visualization hooks.</li>
+      <li><strong>SEO Pillars:</strong> Comprehensive, long-form assets that dominate search engine results.</li>
+      <li><strong>Thought Leadership:</strong> Opinion pieces and expert insights that establish you as the industry authority.</li>
+      <li><strong>Conversion Copy:</strong> High-impact landing pages and ad copy designed to maximize ROI.</li>
+      <li><strong>Social Media Strategy:</strong> Engaging, shareable narratives that build community and brand affinity.</li>
+      <li><strong>Email Marketing Assets:</strong> Personalized storytelling that drives retention and customer lifetime value.</li>
     </ul>
     <h4>Strategic Value</h4>
-    <p>By choosing our specialized article service, you are investing in <strong>Digital Real Estate</strong>. Our content is designed to rank for years, building a snowball effect of organic traffic and institutional trust.</p>
+    <p>By choosing our specialized digital strategy, you are investing in <strong>Scalable Growth</strong>. Our approach is designed to build a compounding effect of organic traffic, brand equity, and sustainable revenue.</p>
     <div class="modal-divider"></div>
     <div class="policy-block">
       <h5>Delivery & Standards</h5>
-      <p>Standard delivery: 5-7 business days for deep-research pieces. Includes 3 rounds of iterative feedback and full copyright transfer. We provide content in multiple formats including Markdown, HTML, and PDF.</p>
+      <p>Standard delivery: 3-5 business days for strategy development and core assets. Includes detailed performance tracking, SEO audits, and full copyright transfer. We deliver optimized content ready for immediate deployment.</p>
     </div>`
       }
     };
@@ -2733,7 +2854,7 @@
     /* ── NARRATIVE THREAD LOGIC ── */
     const thread = document.getElementById('scrollThread');
     const tip = document.getElementById('scrollTip');
-    
+
     if (thread && tip) {
       const threadSvg = thread.parentElement;
 
