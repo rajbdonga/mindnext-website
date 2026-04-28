@@ -1,0 +1,128 @@
+﻿
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#about-pg">About</a></li>
+        <li><a href="index.html#contact-form">Contact</a></li>
+  <section class="sub-hero">
+    <h1>Cookie <em>Preferences</em></h1>
+    <p>We use cookies to help you navigate efficiently and perform certain functions. You will find detailed 
+information about all cookies under each consent category below.</p>
+      <p>Necessary cookies are crucial for the basic functions of the website and the website will not work in its 
+intended way without them. These cookies do not store any personally identifiable data.</p>
+      <p>Analytical cookies are used to understand how visitors interact with the website. These cookies help provide 
+information on metrics the number of visitors, bounce rate, traffic source, etc.</p>
+      <p>Performance cookies are used to understand and analyze the key performance indexes of the website which helps 
+in delivering a better user experience for the visitors.</p>
+          <ul>
+            <li><a href="index.html#about-pg">Our Story</a></li>
+            <li><a href="index.html#purpose">Our Purpose</a></li>
+            <li><a href="index.html#sust">Sustainability</a></li>
+            <li><a href="index.html#about-pg">Leadership</a></li>
+            <li><a href="index.html#contact-form">Careers</a></li>
+          <ul>
+            <li><a href="index.html#services">Article Provider Service</a></li>
+          <ul>
+            <li><a href="index.html#contact-form">Investor Relations</a></li>
+            <li><a href="index.html#contact-form">Media & Press</a></li>
+            <li><a href="index.html#contact-form">Supplier Portal</a></li>
+            <li><a href="index.html#contact-form">FAQs</a></li>
+            <li><a href="index.html#contact-form">Contact Us</a></li>
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#about-pg">About</a></li>
+        <li><a href="index.html#contact-form">Contact</a></li>
+  <section class="sub-hero">
+    <h1>Legal <em>Disclaimer</em></h1>
+    <p>The information provided by MindNext ("we," "us," or "our") on MindNext.in is for general informational 
+purposes only. All information on the site is provided in good faith, however we make no representation or warranty of 
+any kind, express or implied, regarding the accuracy, adequacy, validity, reliability, availability, or completeness 
+of any information on the site.</p>
+    <p>The site cannot and does not contain professional advice. The information is provided for general informational 
+and educational purposes only and is not a substitute for professional advice. Accordingly, before taking any actions 
+based upon such information, we encourage you to consult with the appropriate professionals.</p>
+    <p>The site may contain (or you may be sent through the site) links to other websites or content belonging to or 
+originating from third parties. Such external links are not investigated, monitored, or checked for accuracy, 
+adequacy, validity, reliability, availability, or completeness by us.</p>
+    <p>Under no circumstance shall we have any liability to you for any loss or damage of any kind incurred as a 
+result of the use of the site or reliance on any information provided on the site. Your use of the site and your 
+reliance on any information on the site is solely at your own risk.</p>
+          <ul>
+            <li><a href="index.html#about-pg">Our Story</a></li>
+            <li><a href="index.html#purpose">Our Purpose</a></li>
+            <li><a href="index.html#sust">Sustainability</a></li>
+            <li><a href="index.html#about-pg">Leadership</a></li>
+            <li><a href="index.html#contact-form">Careers</a></li>
+          <ul>
+            <li><a href="index.html#services">Article Provider Service</a></li>
+          <ul>
+            <li><a href="index.html#contact-form">Investor Relations</a></li>
+            <li><a href="index.html#contact-form">Media & Press</a></li>
+            <li><a href="index.html#contact-form">Supplier Portal</a></li>
+            <li><a href="index.html#contact-form">FAQs</a></li>
+            <li><a href="index.html#contact-form">Contact Us</a></li>
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#about-pg">About</a></li>
+        <li><a href="index.html#contact-form">Contact</a></li>
+  <section class="sub-hero">
+    <h1>Privacy <em>Policy</em></h1>
+    <p>We collect information you provide directly to us, such as when you submit a contact form or request 
+information about our services.</p>
+    <ul>
+      <li>Contact details (Name, email address, phone number)</li>
+      <li>Communication history and project inquiries</li>
+      <li>Technical data (IP address, browser type) for security and analytics</li>
+    <p>Your information is used solely to provide and improve our services, communicate with you, and ensure the 
+security of our platform.</p>
+    <p>We employ state-of-the-art encryption and security protocols to ensure your data remains confidential and 
+protected against unauthorized access.</p>
+    <p>You have the right to request access to, correction of, or deletion of your personal information at any time by 
+contacting us at info@mindnext.in.</p>
+          <ul>
+            <li><a href="index.html#about-pg">Our Story</a></li>
+            <li><a href="index.html#purpose">Our Purpose</a></li>
+            <li><a href="index.html#sust">Sustainability</a></li>
+            <li><a href="index.html#about-pg">Leadership</a></li>
+            <li><a href="index.html#contact-form">Careers</a></li>
+          <ul>
+            <li><a href="index.html#services">Article Provider Service</a></li>
+          <ul>
+            <li><a href="index.html#contact-form">Investor Relations</a></li>
+            <li><a href="index.html#contact-form">Media & Press</a></li>
+            <li><a href="index.html#contact-form">Supplier Portal</a></li>
+            <li><a href="index.html#contact-form">FAQs</a></li>
+            <li><a href="index.html#contact-form">Contact Us</a></li>
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#about-pg">About</a></li>
+        <li><a href="index.html#contact-form">Contact</a></li>
+  <section class="sub-hero">
+    <h1>Site <em>Structure</em></h1>
+    <ul>
+      <li><a href="index.html#home">Home</a></li>
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#purpose">Our Purpose</a></li>
+      <li><a href="index.html#sust">Sustainability</a></li>
+      <li><a href="index.html#about-pg">About Our Story</a></li>
+      <li><a href="index.html#contact-form">Contact Us</a></li>
+    <ul>
+      <li><a href="privacy.html">Privacy Policy</a></li>
+      <li><a href="disclaimer.html">Disclaimer</a></li>
+      <li><a href="sitemap.html">Sitemap</a></li>
+      <li><a href="cookies.html">Cookie Settings</a></li>
+          <ul>
+            <li><a href="index.html#about-pg">Our Story</a></li>
+            <li><a href="index.html#purpose">Our Purpose</a></li>
+            <li><a href="index.html#sust">Sustainability</a></li>
+            <li><a href="index.html#about-pg">Leadership</a></li>
+            <li><a href="index.html#contact-form">Careers</a></li>
+          <ul>
+            <li><a href="index.html#services">Article Provider Service</a></li>
+          <ul>
+            <li><a href="index.html#contact-form">Investor Relations</a></li>
+            <li><a href="index.html#contact-form">Media & Press</a></li>
+            <li><a href="index.html#contact-form">Supplier Portal</a></li>
+            <li><a href="index.html#contact-form">FAQs</a></li>
+            <li><a href="index.html#contact-form">Contact Us</a></li>
+
+
