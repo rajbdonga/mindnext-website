@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Sitemap — MindNext</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <style>
+    :root {
+      --red: #9B1B30;
+      --red-d: #7A1526;
+      --navy: #1A0505;
+      --navy-m: #2D0A0A;
+      --white: #fff;
+      --cream: #250606;
+      --off: #130303;
+      --warm: #3D0F0F;
+      --g4: rgba(255, 255, 255, .4);
+      --g6: rgba(255, 255, 255, .6);
+      --g8: #fff;
+      --text: #fff;
+      --green: #7A1526;
+      --esg: #FF5E5E;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      overflow-x: hidden;
+    }
+
+    @media (max-width: 768px) {
+      html { font-size: 14px; }
+    }
+
+    body {
+      background: var(--navy);
+      color: var(--text);
+      font-family: var(--sans);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit
+    }
+
+    /* ── NAVBAR ── */
+    #nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      transition: all .4s;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    #nav.scrolled {
+      background: rgba(26, 5, 5, 0.4);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15)
+    }
+
+    .nav-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--serif);
+      font-size: 1.65rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: .02em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      list-style: none
+    }
+
+    .nav-links a {
+      font-size: .875rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, .85);
+      letter-spacing: .01em;
+      position: relative;
+      transition: color .3s
+    }
+
+    .nav-links a:hover {
+      color: #fff
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 8px;
+      background: none;
+      border: none
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 1.5px;
+      background: #fff;
+      transition: all .3s;
+      border-radius: 1px
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      background: var(--navy);
+      z-index: 2000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+      transform: translateY(-100%);
+      transition: transform 0.6s var(--ease);
+    }
+
+    .mobile-menu.open {
+      transform: translateY(0);
+    }
+
+    .mm-link {
+      font-family: var(--serif);
+      font-size: 2.5rem;
+      color: #fff;
+    }
+
+    .menu-close {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      font-size: 2rem;
+      color: #fff;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* ── SUB HERO ── */
+    .sub-hero {
+      position: relative;
+      padding: 12rem 0 6rem;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 15% 25%, rgba(155, 27, 48, .15) 0%, transparent 45%),
+        radial-gradient(circle at 85% 75%, rgba(155, 27, 48, .1) 0%, transparent 45%),
+        linear-gradient(135deg, #0f0303 0%, #1a0505 40%, #2d0a0a 70%, #1a0505 100%);
+      z-index: -1;
+    }
+
+    .sub-hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 8vw, 5rem);
+      font-weight: 400;
+      line-height: 1.1;
+      color: #fff;
+    }
+
+    .sub-hero h1 em {
+      font-style: italic;
+      color: var(--red);
+    }
+
+    /* ── LEGAL CONTENT ── */
+    .legal-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 4rem 2.5rem 10rem;
+    }
+
+    .legal-content h2 {
+      font-family: var(--serif);
+      font-size: 2.2rem;
+      margin: 4rem 0 1.5rem;
+      color: #fff;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-bottom: 1rem;
+      font-weight: 400;
+    }
+
+    .sitemap-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 3rem;
+      margin-top: 2rem;
+    }
+
+    .sitemap-col h3 {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      margin-bottom: 1.5rem;
+      color: var(--red);
+      font-weight: 500;
+    }
+
+    .sitemap-col ul {
+      list-style: none;
+    }
+
+    .sitemap-col li {
+      margin-bottom: 0.8rem;
+    }
+
+    .sitemap-col a {
+      color: var(--g6);
+      text-decoration: none;
+      font-size: 1rem;
+      transition: color 0.3s;
+      font-weight: 300;
+    }
+
+    .sitemap-col a:hover {
+      color: #fff;
+      padding-left: 4px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      color: rgba(255, 255, 255, .6)
+    }
+
+    .ft {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 2.5rem
+    }
+
+    .ft-top {
+      display: grid;
+      grid-template-columns: 1.8fr repeat(3, 1fr);
+      gap: 3rem;
+      padding: 4.5rem 0 3.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, .07)
+    }
+
+    .ft-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--serif);
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 1.5rem
+    }
+
+    .ft-contact a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .83rem;
+      color: rgba(255, 255, 255, .5);
+      transition: color .25s;
+      margin-bottom: .6rem
+    }
+
+    .ft-contact a:hover {
+      color: #fff
+    }
+
+    .ft-contact svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      fill: none;
+      flex-shrink: 0
+    }
+
+    .socials {
+      display: flex;
+      gap: .6rem;
+      margin-top: 1.5rem
+    }
+
+    .s-ico {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, .15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all .25s
+    }
+
+    .s-ico:hover {
+      border-color: var(--red);
+      background: var(--red)
+    }
+
+    .s-ico svg {
+      width: 14px;
+      height: 14px;
+      fill: rgba(255, 255, 255, .6);
+      transition: fill .25s
+    }
+
+    .s-ico:hover svg {
+      fill: #fff
+    }
+
+    .ft-col h5 {
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 1.1rem
+    }
+
+    .ft-col ul {
+      list-style: none
+    }
+
+    .ft-col ul li {
+      margin-bottom: .5rem
+    }
+
+    .ft-col ul li a {
+      font-size: .82rem;
+      color: rgba(255, 255, 255, .45);
+      transition: all .25s;
+      display: block
+    }
+
+    .ft-col ul li a:hover {
+      color: rgba(255, 255, 255, .9);
+      padding-left: 4px
+    }
+
+    .ft-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 0;
+      flex-wrap: wrap;
+      gap: 1rem
+    }
+
+    .ft-copy {
+      font-size: .78rem;
+      color: rgba(255, 255, 255, .3)
+    }
+
+    .ft-legal {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap
+    }
+
+    .ft-legal a {
+      font-size: .78rem;
+      color: rgba(255, 255, 255, .3);
+      transition: color .25s
+    }
+
+    .ft-legal a:hover {
+      color: var(--red)
+    }
+
+    @media(max-width: 1024px) {
+      .container { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      
+      .ft-top {
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+      }
+    }
+
+    @media(max-width: 768px) {
+      .sub-hero { padding: 10rem 0 4rem; }
+      .sub-hero h1 { font-size: 2.8rem; }
+      
+      .ft-top { grid-template-columns: 1fr; text-align: center; }
+      .ft-col ul { display: flex; flex-direction: column; align-items: center; }
+      .ft-bottom { flex-direction: column; gap: 1.5rem; text-align: center; }
+      .ft-legal { justify-content: center; flex-wrap: wrap; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav id="nav">
+    <div class="nav-inner">
+      <a href="MindNext.html#home" class="nav-logo">
+        <span>MindNext</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="MindNext.html#home">Home</a></li>
+        <li><a href="MindNext.html#services">Services</a></li>
+        <li><a href="MindNext.html#about-pg">About</a></li>
+        <li><a href="MindNext.html#contact-form">Contact</a></li>
+      </ul>
+      <button class="hamburger" id="ham" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mmenu">
+    <button class="menu-close" id="mclose">✕</button>
+    <a href="MindNext.html#home" class="mm-link">Home</a>
+    <a href="MindNext.html#services" class="mm-link">Services</a>
+    <a href="MindNext.html#about-pg" class="mm-link">About</a>
+    <a href="MindNext.html#contact-form" class="mm-link">Contact</a>
+  </div>
+
+  <section class="sub-hero">
+    <div class="hero-bg"></div>
+    <div class="container">
+      <h1>Site <em>Structure</em></h1>
+    </div>
+  </section>
+
+  <main class="legal-content">
+    <div class="sitemap-grid">
+      <div class="sitemap-col">
+        <h3>Main Pages</h3>
+        <ul>
+          <li><a href="MindNext.html#home">Home</a></li>
+          <li><a href="MindNext.html#services">Services</a></li>
+          <li><a href="MindNext.html#about-pg">About Us</a></li>
+          <li><a href="MindNext.html#purpose">Our Purpose</a></li>
+          <li><a href="MindNext.html#contact-form">Contact</a></li>
+        </ul>
+      </div>
+      <div class="sitemap-col">
+        <h3>Legal</h3>
+        <ul>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="disclaimer.html">Disclaimer</a></li>
+          <li><a href="sitemap.html">Sitemap</a></li>
+          <li><a href="cookies.html">Cookie Settings</a></li>
+        </ul>
+      </div>
+      <div class="sitemap-col">
+        <h3>Connect</h3>
+        <ul>
+          <li><a href="mailto:info.mindnext@gmail.com">Email Us</a></li>
+          <li><a href="tel:+919429066805">Call Us</a></li>
+        </ul>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="ft">
+      <div class="ft-top">
+        <div>
+          <div class="ft-logo">
+            <span>MindNext</span>
+          </div>
+          <p
+            style="font-size:.85rem;font-weight:300;color:rgba(255,255,255,.45);line-height:1.75;max-width:300px;margin-bottom:1.25rem">
+            Empowering brands through data-driven digital growth and creative strategy since 2012.</p>
+          <div class="ft-contact">
+            <a href="mailto:info.mindnext@gmail.com">
+              <svg viewBox="0 0 24 24">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
+              </svg>
+              info.mindnext@gmail.com
+            </a>
+            <a href="tel:+919429066805">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 11 19.79 19.79 0 0 1 1.93 2.3 2 2 0 0 1 3.9 0h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 7.91a16 16 0 0 0 5.97 5.97l1.06-1.06a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+              </svg>
+              +91 94 2906 6805
+            </a>
+          </div>
+          <div class="socials">
+            <a class="s-ico" href="#" aria-label="Twitter/X">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg>
+            </a>
+            <a class="s-ico" href="#" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+              </svg>
+            </a>
+            <a class="s-ico" href="#" aria-label="Facebook">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+              </svg>
+            </a>
+            <a class="s-ico" href="#" aria-label="Instagram">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z" />
+              </svg>
+            </a>
+            <a class="s-ico" href="#" aria-label="YouTube">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="ft-col">
+          <h5>Company</h5>
+          <ul>
+            <li><a href="MindNext.html#about-pg">Our Story</a></li>
+            <li><a href="MindNext.html#purpose">Our Purpose</a></li>
+            <li><a href="MindNext.html#about-pg">Leadership</a></li>
+            <li><a href="MindNext.html#contact-form">Careers</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h5>Services</h5>
+          <ul>
+            <li><a href="MindNext.html#services">Article Provider Service</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h5>Resources</h5>
+          <ul>
+            <li><a href="MindNext.html#contact-form">FAQs</a></li>
+            <li><a href="MindNext.html#contact-form">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="ft-bottom">
+        <p class="ft-copy">© 2026 MindNext. All rights reserved.</p>
+        <div class="ft-legal">
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="disclaimer.html">Disclaimer</a>
+          <a href="sitemap.html">Sitemap</a>
+          <a href="cookies.html">Cookie Settings</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 30) });
+
+    const ham = document.getElementById('ham'), mmenu = document.getElementById('mmenu'), mclose = document.getElementById('mclose');
+    ham.onclick = () => { mmenu.classList.add('open'); ham.classList.add('open'); };
+    mclose.onclick = () => { mmenu.classList.remove('open'); ham.classList.remove('open'); };
+    document.querySelectorAll('.mm-link').forEach(a => a.addEventListener('click', () => { mmenu.classList.remove('open'); ham.classList.remove('open'); }));
+  </script>
+</body>
+
+</html>
