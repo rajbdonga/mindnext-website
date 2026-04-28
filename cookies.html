@@ -490,6 +490,13 @@
     }
 
     @media(max-width: 768px) {
+      .cookie-option {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+        padding: 1.5rem;
+      }
+
       .sub-hero {
         padding: 10rem 0 4rem;
       }
@@ -591,10 +598,9 @@
         <h4>Essential Cookies</h4>
         <p>These cookies are required for basic site functionality and cannot be disabled.</p>
       </div>
-      <label class="switch">
-        <input type="checkbox" checked disabled>
-        <span class="slider"></span>
-      </label>
+      <div style="font-weight: 600; color: #fff; background: rgba(255,255,255,0.1); padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem;">
+        Always Active
+      </div>
     </div>
 
     <div class="cookie-option">
